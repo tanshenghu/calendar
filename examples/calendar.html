@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="Keywords" content="日历组件,多用于商城打折优惠活动页面等">
+    <meta name="Description" content="日历组件,多用于商城打折优惠活动页面等">
+    <meta name="Author" content="TanShenghu">
+    <title>calendar</title>
+    <style>
+    *{margin:0;padding:0;}
+    .showPopDate{
+        width:750px;
+        margin:30px auto 0 auto;
+        text-align:center;
+    }
+    .showPopDate .titlebox{
+        height:30px;
+        line-height:30px;
+        background:#268eef;
+        position:relative;
+        color:white;
+    }
+    .showPopDate .prevBtn,.showPopDate .nextBtn{
+        position: absolute;
+        top:5px;
+        height:20px;
+        line-height:20px;
+        cursor:pointer;
+        
+    }.showPopDate .prevBtn{
+        left:7px;
+    }
+    .showPopDate .nextBtn{
+        right:7px;
+    }
+    .showPopDate table{
+        width:100%;
+        border-left:1px solid #dedede;
+        border-top:1px solid #dedede;
+        background:#f1f1f1;
+    }
+    .showPopDate table th{
+        font-size:14px;
+        background-color:#666;
+        color:yellow;
+    }
+    .showPopDate table .rest{
+        color:red;
+    }
+    .showPopDate table th,.showPopDate table td{
+        border-right:1px solid #dedede;
+        border-bottom:1px solid #dedede;
+        padding:2px 3px;
+        text-align:center;
+        vertical-align:middle;
+    }
+    .showPopDate table td{
+        cursor:pointer;
+    }
+    .showPopDate table .day_box{
+        position:relative;
+        height:45px;
+    }
+    .showPopDate table .tip{
+        position:absolute;
+        left:0;
+        bottom:0;
+        font-size:12px;
+        width:100%;
+        text-align:center;color:green;
+    }
+    .showPopDate table .tip em{
+        color:red;
+        font-style:normal;
+    }
+    .showPopDate tbody .prev-Month,.showPopDate tbody .next-Month{
+        background:#ccc;
+        color:#f1f1f1;
+    }
+    .showPopDate tbody .today{
+        background:orange;
+    }
+    </style>
+    <script src="http://www.tanshenghu.com/static/js/sea.js"></script>
+    <script>
+    seajs.config({
+      paths: {
+        'widget': 'http://www.tanshenghu.com/widget'
+      },    
+      alias: {
+        'calendar': 'widget/calendar/1.0.0/calendar'
+      }
+    });
+    </script>
+</head>
+<body>
+    <div align="center"><img src="http://www.tanshenghu.com/widget/calendar/examples/eg.jpg" alt="示例图" title="示例图"></div>
+    <div align="center"><input type="text" id="Fill"></div>
+    <div id="popdata" class="showPopDate"></div>
+    <script>
+    seajs.use('calendar', function( Calendar ){
+        
+        var otip   = ['优惠','<em>八折</em>优惠','买疯了','天天打折','<em>一折</em>优惠','多买<em>多送</em>'];
+        
+        var oinput = document.getElementById('Fill');
+        
+        var tds = Calendar.init( 'popdata', function( popBox, titleBox, table ){
+            var tds = this;
+            
+            for( var i=0, l=tds.length; i<l; i++ ){
+                
+                if( tds[ i ].innerText==Math.ceil(Math.random()*30) || tds[ i ].textContent==Math.ceil(Math.random()*30) ){
+                    var tip = document.createElement('label');
+                    tip.className = 'tip';
+                    tip.innerHTML = otip[ Math.ceil(Math.random()*5) ]||'';
+                    tds[ i ].getElementsByTagName('div')[0].appendChild( tip );
+                }
+                
+                tds[ i ].onclick = function(){
+                    oinput.value = this.activeDate; //this.innerText || this.textContent;
+                }
+            }
+            
+            for( var i=0, l=tds.prevMonth.length; i<l; i++ ){
+                tds.prevMonth[ i ].onclick = function(){
+                    oinput.value = this.activeDate; //this.innerText || this.textContent;
+                }
+            }
+            
+            for( var i=0, l=tds.nextMonth.length; i<l; i++ ){
+                tds.nextMonth[ i ].onclick = function(){
+                    oinput.value = this.activeDate; //this.innerText || this.textContent;
+                }
+            }
+            
+            
+        });
+        console.log( tds );
+        
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "family": "widget",
+  "name": "calendar",
+  "version": "1.0.0",
+  "description": "自己接外面私单的一个项目，详情页面有日历，设计稿上的日历能左右翻月份并在当月部分日期上能显示购物优惠、打折、金额等信息。于是花点时间自己写了一个日历方法(原生js不依赖任何库文件)",
+  "homepage": "http://git.oschina.net/tanshenghu/myweb/tree/widget/1.0.0/calendar",
+  "author": "谭生虎",
+  "maintainers": [
+    "谭生虎 <tanshenghu@163.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://git.oschina.net/tanshenghu/myweb/tree/widget/1.0.0/calendar.git"
+  },
+  "bugs": {
+    "url": "http://git.oschina.net/tanshenghu/myweb/tree/widget/1.0.0/calendar/issues"
+  },
+  "keywords": [],
+  "licenses": "tsh_worker",
+  "spm": {
+    "output": [
+      "calendar.js"
+    ],
+    "alias": {},
+    "devAlias": {},
+    "engines": {}
+  }
+}
